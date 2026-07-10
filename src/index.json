@@ -66951,6 +66951,51 @@
                 "sha256Digest": "e0969fd29db64b28159a0ef6d853a9e1d92a1ca971605a01465bc4d39826bc44"
             }
         ],
+        "documentdb": [
+            {
+                "downloadUrl": "https://azcliprod.blob.core.windows.net/cli-extensions/documentdb-1.0.0b1-py3-none-any.whl",
+                "filename": "documentdb-1.0.0b1-py3-none-any.whl",
+                "metadata": {
+                    "azext.isPreview": true,
+                    "azext.minCliCoreVersion": "2.75.0",
+                    "classifiers": [
+                        "Development Status :: 4 - Beta",
+                        "Intended Audience :: Developers",
+                        "Intended Audience :: System Administrators",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.9",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13",
+                        "License :: OSI Approved :: MIT License"
+                    ],
+                    "extensions": {
+                        "python.details": {
+                            "contacts": [
+                                {
+                                    "email": "azpycli@microsoft.com",
+                                    "name": "Microsoft Corporation",
+                                    "role": "author"
+                                }
+                            ],
+                            "project_urls": {
+                                "Home": "https://github.com/Azure/azure-cli-extensions/tree/main/src/documentdb"
+                            }
+                        }
+                    },
+                    "extras": [],
+                    "license": "MIT",
+                    "metadata_version": "2.1",
+                    "name": "documentdb",
+                    "run_requires": [],
+                    "summary": "Microsoft Azure Command-Line Tools Documentdb Extension.",
+                    "version": "1.0.0b1"
+                },
+                "sha256Digest": "d196c4f6c8f6cb5d8f7cb9a44dbe87fb877f429f3a1960eec04a5a7302a8f411"
+            }
+        ],
         "durabletask": [
             {
                 "downloadUrl": "https://azcliprod.blob.core.windows.net/cli-extensions/durabletask-1.0.0b1-py3-none-any.whl",
