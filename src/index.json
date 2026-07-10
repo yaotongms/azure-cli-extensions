@@ -73338,6 +73338,47 @@
                     "version": "1.0.0b4"
                 },
                 "sha256Digest": "da9eac2b2361a01b2bc277a8ed3530afe33213fe9f853c453fd6a97ea7b13fb4"
+            },
+            {
+                "downloadUrl": "https://azcliprod.blob.core.windows.net/cli-extensions/horizondb-1.0.0b5-py2.py3-none-any.whl",
+                "filename": "horizondb-1.0.0b5-py2.py3-none-any.whl",
+                "metadata": {
+                    "azext.isPreview": true,
+                    "azext.minCliCoreVersion": "2.17.1",
+                    "classifiers": [
+                        "Development Status :: 4 - Beta",
+                        "Intended Audience :: Developers",
+                        "Intended Audience :: System Administrators",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.6",
+                        "Programming Language :: Python :: 3.7",
+                        "Programming Language :: Python :: 3.8",
+                        "License :: OSI Approved :: MIT License"
+                    ],
+                    "extensions": {
+                        "python.details": {
+                            "contacts": [
+                                {
+                                    "email": "azpycli@microsoft.com",
+                                    "name": "Microsoft Corporation",
+                                    "role": "author"
+                                }
+                            ],
+                            "project_urls": {
+                                "Home": "https://github.com/Azure/azure-cli-extensions/tree/main/src/horizondb"
+                            }
+                        }
+                    },
+                    "extras": [],
+                    "license": "MIT",
+                    "metadata_version": "2.4",
+                    "name": "horizondb",
+                    "run_requires": [],
+                    "summary": "Microsoft Azure Command-Line Tools HorizonDB Extension",
+                    "version": "1.0.0b5"
+                },
+                "sha256Digest": "7b4656313e78109bde949b2750f72e4dfd6609f45b49ff44ef2d849fb90c75cb"
             }
         ],
         "hpc-cache": [
