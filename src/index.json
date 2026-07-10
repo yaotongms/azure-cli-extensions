@@ -99319,6 +99319,47 @@
                     "version": "1.0.0b16"
                 },
                 "sha256Digest": "8610d0cc0e23b663f22db77bd371180c29810e3252dab0538fb420c784f87714"
+            },
+            {
+                "downloadUrl": "https://azcliprod.blob.core.windows.net/cli-extensions/quantum-1.0.0b17-py3-none-any.whl",
+                "filename": "quantum-1.0.0b17-py3-none-any.whl",
+                "metadata": {
+                    "azext.isPreview": true,
+                    "azext.minCliCoreVersion": "2.73.0",
+                    "classifiers": [
+                        "Development Status :: 4 - Beta",
+                        "Intended Audience :: Developers",
+                        "Intended Audience :: System Administrators",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "License :: OSI Approved :: MIT License"
+                    ],
+                    "extensions": {
+                        "python.details": {
+                            "contacts": [
+                                {
+                                    "email": "que-contacts@microsoft.com",
+                                    "name": "Microsoft Corporation, Quantum Team",
+                                    "role": "author"
+                                }
+                            ],
+                            "project_urls": {
+                                "Home": "https://github.com/Azure/azure-cli-extensions/tree/main/src/quantum"
+                            }
+                        }
+                    },
+                    "extras": [],
+                    "license": "MIT",
+                    "metadata_version": "2.1",
+                    "name": "quantum",
+                    "run_requires": [],
+                    "summary": "Microsoft Azure Command-Line Tools Quantum Extension",
+                    "version": "1.0.0b17"
+                },
+                "sha256Digest": "753832e102ac795c692d02d49bd0753af1414f47f9e3df3975ae1fded4f2f166"
             }
         ],
         "qumulo": [
