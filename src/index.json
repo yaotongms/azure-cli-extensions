@@ -73378,7 +73378,7 @@
                     "summary": "Microsoft Azure Command-Line Tools HorizonDB Extension",
                     "version": "1.0.0b5"
                 },
-                "sha256Digest": "7b4656313e78109bde949b2750f72e4dfd6609f45b49ff44ef2d849fb90c75cb"
+                "sha256Digest": "8215f54e3193f7de5e1aee906a8915208cd7b602e35f92180870f73cafbf2699"
             }
         ],
         "hpc-cache": [
@@ -99488,7 +99488,7 @@
                     "summary": "Microsoft Azure Command-Line Tools Quantum Extension",
                     "version": "1.0.0b17"
                 },
-                "sha256Digest": "753832e102ac795c692d02d49bd0753af1414f47f9e3df3975ae1fded4f2f166"
+                "sha256Digest": "fd4590af014325af6d94e9bf3c358974b0e0103f8b2e35a6a9b81b4dc400ed30"
             }
         ],
         "qumulo": [
@@ -118892,7 +118892,7 @@
                     "summary": "Microsoft Azure Command-Line Tools NetworkManagementClient Extension",
                     "version": "3.0.2"
                 },
-                "sha256Digest": "074c8ad2f423a5a02ee7b144ebb513415cec32328cf4cfa6df2c15af231f0cab"
+                "sha256Digest": "15f313906eac8acbe4ca140661c44e85a799b5bcdc7ed314c294157fbab6e644"
             }
         ],
         "virtual-network-tap": [
@@ -122607,7 +122607,7 @@
                     "summary": "Auto repair commands to fix VMs.",
                     "version": "2.2.1"
                 },
-                "sha256Digest": "cc85f37090fc5074b3d94d043b9e7542bbab38052fd47d64040e42e2b6a1b272"
+                "sha256Digest": "a7c8be77034b04d4adb77a5f0c8f647ed288409c38f4bce7949f55e6c0b28b5f"
             }
         ],
         "vme": [
