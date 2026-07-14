@@ -106102,6 +106102,62 @@
                     "version": "3.3.6"
                 },
                 "sha256Digest": "c8e66f796dcafd4ea91eb2800c93a236d97c0566364aaf5e50ae9cd3a01ef93c"
+            },
+            {
+                "downloadUrl": "https://azcliprod.blob.core.windows.net/cli-extensions/serviceconnector_passwordless-3.3.7-py3-none-any.whl",
+                "filename": "serviceconnector_passwordless-3.3.7-py3-none-any.whl",
+                "metadata": {
+                    "azext.isPreview": false,
+                    "azext.minCliCoreVersion": "2.87.0",
+                    "classifiers": [
+                        "Development Status :: 4 - Beta",
+                        "Intended Audience :: Developers",
+                        "Intended Audience :: System Administrators",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.6",
+                        "Programming Language :: Python :: 3.7",
+                        "Programming Language :: Python :: 3.8",
+                        "License :: OSI Approved :: MIT License"
+                    ],
+                    "extensions": {
+                        "python.details": {
+                            "contacts": [
+                                {
+                                    "email": "azpycli@microsoft.com",
+                                    "name": "Microsoft Corporation",
+                                    "role": "author"
+                                }
+                            ],
+                            "project_urls": {
+                                "Home": "https://github.com/Azure/azure-cli-extensions/tree/master/src/serviceconnector-passwordless"
+                            }
+                        }
+                    },
+                    "extras": [],
+                    "license": "MIT",
+                    "metadata_version": "2.4",
+                    "name": "serviceconnector-passwordless",
+                    "run_requires": [
+                        {
+                            "requires": [
+                                "azure-core",
+                                "azure-core",
+                                "azure-mgmt-servicelinker (==1.2.0b3)",
+                                "azure-mgmt-servicelinker==1.2.0b3",
+                                "psycopg2-binary (~=2.9.10)",
+                                "psycopg2-binary~=2.9.10",
+                                "PyMySQL (==1.1.1)",
+                                "PyMySQL==1.1.1",
+                                "pyodbc (~=5.3.0)",
+                                "pyodbc~=5.3.0"
+                            ]
+                        }
+                    ],
+                    "summary": "Microsoft Azure Command-Line Tools Serviceconnector-passwordless Extension",
+                    "version": "3.3.7"
+                },
+                "sha256Digest": "f54a161ffacc41daa7a242f7d801425105d65c34aed03db11c4749b088dbdcf4"
             }
         ],
         "servicegroup": [
