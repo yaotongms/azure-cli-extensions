@@ -19064,7 +19064,7 @@
                     "summary": "Provides a preview for upcoming AKS features",
                     "version": "21.0.0b9"
                 },
-                "sha256Digest": "ff4b0191c48984656b48319b06c493952f021725c27bb6209ca28b17f0225427"
+                "sha256Digest": "ae64156264aefec1c46c6dcb56f2f6f01cde3e03188fcc5bdc37fd177def1854"
             }
         ],
         "aksarc": [
@@ -122558,57 +122558,6 @@
                     "version": "2.2.0"
                 },
                 "sha256Digest": "a69b0ae2b25afe714590ed9726f8e72b43c8469f7f85a57059fa9f17ba0de564"
-            },
-            {
-                "downloadUrl": "https://azcliprod.blob.core.windows.net/cli-extensions/vm_repair-2.2.1-py2.py3-none-any.whl",
-                "filename": "vm_repair-2.2.1-py2.py3-none-any.whl",
-                "metadata": {
-                    "azext.isPreview": false,
-                    "azext.minCliCoreVersion": "2.0.67",
-                    "classifiers": [
-                        "Development Status :: 4 - Beta",
-                        "Intended Audience :: Developers",
-                        "Intended Audience :: System Administrators",
-                        "Programming Language :: Python",
-                        "Programming Language :: Python :: 2",
-                        "Programming Language :: Python :: 2.7",
-                        "Programming Language :: Python :: 3",
-                        "Programming Language :: Python :: 3.4",
-                        "Programming Language :: Python :: 3.5",
-                        "Programming Language :: Python :: 3.6",
-                        "Programming Language :: Python :: 3.13",
-                        "License :: OSI Approved :: MIT License"
-                    ],
-                    "extensions": {
-                        "python.details": {
-                            "contacts": [
-                                {
-                                    "email": "caiddev@microsoft.com",
-                                    "name": "Microsoft Corporation",
-                                    "role": "author"
-                                }
-                            ],
-                            "project_urls": {
-                                "Home": "https://github.com/Azure/azure-cli-extensions/tree/main/src/vm-repair"
-                            }
-                        }
-                    },
-                    "extras": [],
-                    "license": "MIT",
-                    "metadata_version": "2.4",
-                    "name": "vm-repair",
-                    "run_requires": [
-                        {
-                            "requires": [
-                                "opencensus (~=0.11.4)",
-                                "opencensus~=0.11.4"
-                            ]
-                        }
-                    ],
-                    "summary": "Auto repair commands to fix VMs.",
-                    "version": "2.2.1"
-                },
-                "sha256Digest": "a7c8be77034b04d4adb77a5f0c8f647ed288409c38f4bce7949f55e6c0b28b5f"
             }
         ],
         "vme": [
