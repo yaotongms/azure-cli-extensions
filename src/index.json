@@ -33520,7 +33520,7 @@
                     "summary": "Manage Azure Firewall resources.",
                     "version": "2.2.1"
                 },
-                "sha256Digest": "1ff948c19b1579a0ee650595fb261cf7ac281a3dd60e461a501db942228e6f58"
+                "sha256Digest": "ab86a2d1412ba8a23dec0f0e678fc992e4f540b38a6b7eab6193c8b62bb5afdb"
             }
         ],
         "azure-iot": [
@@ -70957,7 +70957,7 @@
                     "summary": "Microsoft Azure Command-Line Tools Fleet Extension",
                     "version": "1.11.0"
                 },
-                "sha256Digest": "bd692876cccccdf55d40fbd7040bf0d2110ef0f708cd759b70aef85c26504712"
+                "sha256Digest": "462c0e15b855b2cc0454c4da6978796ff96e99fb693884dde5c06b588109b0b8"
             }
         ],
         "fluid-relay": [
@@ -106198,7 +106198,7 @@
                     "summary": "Microsoft Azure Command-Line Tools Serviceconnector-passwordless Extension",
                     "version": "3.3.7"
                 },
-                "sha256Digest": "f54a161ffacc41daa7a242f7d801425105d65c34aed03db11c4749b088dbdcf4"
+                "sha256Digest": "4080b83ff7759079a29cac8f8741630af1343d5fdf80da16619e17948e85ee5c"
             }
         ],
         "servicegroup": [
