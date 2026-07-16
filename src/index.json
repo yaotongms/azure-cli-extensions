@@ -19065,6 +19065,47 @@
                     "version": "21.0.0b9"
                 },
                 "sha256Digest": "ae64156264aefec1c46c6dcb56f2f6f01cde3e03188fcc5bdc37fd177def1854"
+            },
+            {
+                "downloadUrl": "https://azcliprod.blob.core.windows.net/cli-extensions/aks_preview-21.0.0b10-py2.py3-none-any.whl",
+                "filename": "aks_preview-21.0.0b10-py2.py3-none-any.whl",
+                "metadata": {
+                    "azext.isPreview": true,
+                    "azext.minCliCoreVersion": "2.85.0",
+                    "classifiers": [
+                        "Development Status :: 4 - Beta",
+                        "Intended Audience :: Developers",
+                        "Intended Audience :: System Administrators",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.6",
+                        "Programming Language :: Python :: 3.7",
+                        "Programming Language :: Python :: 3.8",
+                        "License :: OSI Approved :: MIT License"
+                    ],
+                    "extensions": {
+                        "python.details": {
+                            "contacts": [
+                                {
+                                    "email": "azpycli@microsoft.com",
+                                    "name": "Microsoft Corporation",
+                                    "role": "author"
+                                }
+                            ],
+                            "project_urls": {
+                                "Home": "https://github.com/Azure/azure-cli-extensions/tree/main/src/aks-preview"
+                            }
+                        }
+                    },
+                    "extras": [],
+                    "license": "MIT",
+                    "metadata_version": "2.4",
+                    "name": "aks-preview",
+                    "run_requires": [],
+                    "summary": "Provides a preview for upcoming AKS features",
+                    "version": "21.0.0b10"
+                },
+                "sha256Digest": "9b5f1aeec4bf28ea70cfe9a07d2ed99496d053247c917ea27cf571ac25db04fa"
             }
         ],
         "aksarc": [
