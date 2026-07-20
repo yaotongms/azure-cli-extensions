@@ -115196,6 +115196,46 @@
                     "version": "1.3.0"
                 },
                 "sha256Digest": "80f256ad14d2eeae1c8a0d75942a67b9e4b33bf12a8d6fbe616df2a9afd4de80"
+            },
+            {
+                "downloadUrl": "https://azcliprod.blob.core.windows.net/cli-extensions/storage_mover-1.3.1-py3-none-any.whl",
+                "filename": "storage_mover-1.3.1-py3-none-any.whl",
+                "metadata": {
+                    "azext.minCliCoreVersion": "2.75.0",
+                    "classifiers": [
+                        "Development Status :: 4 - Beta",
+                        "Intended Audience :: Developers",
+                        "Intended Audience :: System Administrators",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.7",
+                        "Programming Language :: Python :: 3.8",
+                        "Programming Language :: Python :: 3.9",
+                        "License :: OSI Approved :: MIT License"
+                    ],
+                    "extensions": {
+                        "python.details": {
+                            "contacts": [
+                                {
+                                    "email": "azpycli@microsoft.com",
+                                    "name": "Microsoft Corporation",
+                                    "role": "author"
+                                }
+                            ],
+                            "project_urls": {
+                                "Home": "https://github.com/Azure/azure-cli-extensions/tree/main/src/storage-mover"
+                            }
+                        }
+                    },
+                    "extras": [],
+                    "license": "MIT",
+                    "metadata_version": "2.4",
+                    "name": "storage-mover",
+                    "run_requires": [],
+                    "summary": "Microsoft Azure Command-Line Tools StorageMover Extension.",
+                    "version": "1.3.1"
+                },
+                "sha256Digest": "5ed140868b84647f5b1a3518e87826f9ac39390af3614a60a048207006713600"
             }
         ],
         "storage-preview": [
