@@ -41199,6 +41199,49 @@
                     "version": "1.0.0b1"
                 },
                 "sha256Digest": "6326c8ac28d99d943420580e65b9b825f3275cd0bf49a87c61a66eb2cd4ce41e"
+            },
+            {
+                "downloadUrl": "https://azcliprod.blob.core.windows.net/cli-extensions/cdn-1.0.0b2-py2.py3-none-any.whl",
+                "filename": "cdn-1.0.0b2-py2.py3-none-any.whl",
+                "metadata": {
+                    "azext.isPreview": true,
+                    "azext.minCliCoreVersion": "2.85.0",
+                    "classifiers": [
+                        "Development Status :: 4 - Beta",
+                        "Intended Audience :: Developers",
+                        "Intended Audience :: System Administrators",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.8",
+                        "Programming Language :: Python :: 3.9",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "License :: OSI Approved :: MIT License"
+                    ],
+                    "extensions": {
+                        "python.details": {
+                            "contacts": [
+                                {
+                                    "email": "azpycli@microsoft.com",
+                                    "name": "Microsoft Corporation",
+                                    "role": "author"
+                                }
+                            ],
+                            "project_urls": {
+                                "Home": "https://github.com/Azure/azure-cli-extensions/tree/main/src/cdn"
+                            }
+                        }
+                    },
+                    "extras": [],
+                    "license": "MIT",
+                    "metadata_version": "2.4",
+                    "name": "cdn",
+                    "run_requires": [],
+                    "summary": "Microsoft Azure Command-Line Tools CDN and AFD Extension",
+                    "version": "1.0.0b2"
+                },
+                "sha256Digest": "0eddfdaedeb98dc53ab55f4ea3c7302fbe31a2c6053f6a3bf75bfcde7e906df3"
             }
         ],
         "change-analysis": [
