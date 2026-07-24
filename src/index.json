@@ -39045,6 +39045,69 @@
                     "version": "2.7.0"
                 },
                 "sha256Digest": "9982b022203f29da8ee3ec286cae8ecfe26134f9360200cd0cde19b7704b8f13"
+            },
+            {
+                "downloadUrl": "https://github.com/Azure/azure-iot-ops-cli-extension/releases/download/v2.8.0/azure_iot_ops-2.8.0-py3-none-any.whl",
+                "filename": "azure_iot_ops-2.8.0-py3-none-any.whl",
+                "metadata": {
+                    "azext.isPreview": false,
+                    "azext.minCliCoreVersion": "2.70.0",
+                    "classifiers": [
+                        "Development Status :: 5 - Production/Stable",
+                        "Intended Audience :: Developers",
+                        "Intended Audience :: System Administrators",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3 :: Only",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.10",
+                        "Programming Language :: Python :: 3.11",
+                        "Programming Language :: Python :: 3.12",
+                        "Programming Language :: Python :: 3.13"
+                    ],
+                    "extensions": {
+                        "python.details": {
+                            "contacts": [
+                                {
+                                    "email": "Microsoft <iotupx@microsoft.com>",
+                                    "role": "author"
+                                }
+                            ],
+                            "project_urls": {
+                                "homepage": "https://github.com/azure/azure-iot-ops-cli-extension"
+                            }
+                        }
+                    },
+                    "extras": [],
+                    "license": "MIT",
+                    "metadata_version": "2.0",
+                    "name": "azure-iot-ops",
+                    "requires_python": ">=3.10",
+                    "run_requires": [
+                        {
+                            "requires": [
+                                "azure-identity (<1.18.0,>=1.14.1)",
+                                "azure-identity<1.18.0,>=1.14.1",
+                                "jsonschema (<5,>=4.25)",
+                                "jsonschema<5,>=4.25",
+                                "kubernetes (<37.0,>=36.0.2)",
+                                "kubernetes<37.0,>=36.0.2",
+                                "opentelemetry-proto (~=1.20.0)",
+                                "opentelemetry-proto~=1.20.0",
+                                "packaging (>=23.2)",
+                                "packaging>=23.2",
+                                "protobuf (~=4.25.0)",
+                                "protobuf~=4.25.0",
+                                "rich (<14.0,>=13.6)",
+                                "rich<14.0,>=13.6",
+                                "semver (<4,>=3.0.4)",
+                                "semver<4,>=3.0.4"
+                            ]
+                        }
+                    ],
+                    "summary": "The Azure IoT Operations extension for Azure CLI.",
+                    "version": "2.8.0"
+                },
+                "sha256Digest": "cfeb79b5c04dea9e279aca0f18ad8952f59277e861081f9c9f6c311bf57730c3"
             }
         ],
         "azure-sphere": [
