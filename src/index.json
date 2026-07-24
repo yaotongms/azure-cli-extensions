@@ -96618,6 +96618,46 @@
                     "version": "2.0.4"
                 },
                 "sha256Digest": "ade36d168c79dde935f11aba60e39f0d77e138e092adb4411186c5db6abe25ec"
+            },
+            {
+                "downloadUrl": "https://azcliprod.blob.core.windows.net/cli-extensions/oracle_database-2.0.5-py3-none-any.whl",
+                "filename": "oracle_database-2.0.5-py3-none-any.whl",
+                "metadata": {
+                    "azext.minCliCoreVersion": "2.75.0",
+                    "classifiers": [
+                        "Development Status :: 4 - Beta",
+                        "Intended Audience :: Developers",
+                        "Intended Audience :: System Administrators",
+                        "Programming Language :: Python",
+                        "Programming Language :: Python :: 3",
+                        "Programming Language :: Python :: 3.7",
+                        "Programming Language :: Python :: 3.8",
+                        "Programming Language :: Python :: 3.9",
+                        "License :: OSI Approved :: MIT License"
+                    ],
+                    "extensions": {
+                        "python.details": {
+                            "contacts": [
+                                {
+                                    "email": "azpycli@microsoft.com",
+                                    "name": "Microsoft Corporation",
+                                    "role": "author"
+                                }
+                            ],
+                            "project_urls": {
+                                "Home": "https://github.com/Azure/azure-cli-extensions/tree/main/src/oracle-database"
+                            }
+                        }
+                    },
+                    "extras": [],
+                    "license": "MIT",
+                    "metadata_version": "2.4",
+                    "name": "oracle-database",
+                    "run_requires": [],
+                    "summary": "Microsoft Azure Command-Line Tools OracleDatabase Extension.",
+                    "version": "2.0.5"
+                },
+                "sha256Digest": "4a498d5c547d1f31fc2e40a530754d7cde08a867ff73efc34dbd891bd969c975"
             }
         ],
         "orbital": [
