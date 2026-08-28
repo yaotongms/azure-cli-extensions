@@ -37,8 +37,10 @@ from azext_aks_preview._consts import (
     CONST_MANAGED_CLUSTER_SKU_NAME_AUTOMATIC,
     CONST_GPU_DRIVER_NONE,
     CONST_GPU_MANAGEMENT_MODE_MANAGED,
+    CONST_FLEX_NODES,
     CONST_NODEPOOL_MODE_MANAGEDSYSTEM,
     CONST_NODEPOOL_MODE_MACHINES,
+    CONST_OS_SKU_WINDOWS2025,
 )
 from azure.cli.command_modules.acs.agentpool_decorator import AKSAgentPoolParamDict
 from azure.cli.command_modules.acs.tests.latest.mocks import (
@@ -47,6 +49,7 @@ from azure.cli.command_modules.acs.tests.latest.mocks import (
     MockCmd,
 )
 from azure.cli.core.azclierror import (
+    ArgumentUsageError,
     CLIInternalError,
     InvalidArgumentValueError,
     MutuallyExclusiveArgumentError,
@@ -685,6 +688,63 @@ class AKSPreviewAgentPoolContextCommonTestCase(unittest.TestCase):
         ctx_5.attach_agentpool(agentpool_5)
         self.assertEqual(ctx_5.get_os_sku(), None)
 
+    def common_get_enable_fips_image_windows2025_required(self):
+        # Windows2025 requires FIPS-enabled OS image, so it is always enabled on create
+        ctx_1 = AKSPreviewAgentPoolContext(
+            self.cmd,
+            AKSAgentPoolParamDict({"os_sku": CONST_OS_SKU_WINDOWS2025}),
+            self.models,
+            DecoratorMode.CREATE,
+            self.agentpool_decorator_mode,
+        )
+        self.assertEqual(ctx_1.get_enable_fips_image(), True)
+
+        # other os_sku values are not forced to enable FIPS
+        ctx_2 = AKSPreviewAgentPoolContext(
+            self.cmd,
+            AKSAgentPoolParamDict({"os_sku": "Windows2022"}),
+            self.models,
+            DecoratorMode.CREATE,
+            self.agentpool_decorator_mode,
+        )
+        self.assertEqual(ctx_2.get_enable_fips_image(), False)
+
+        # explicit --enable-fips-image is respected regardless of os_sku
+        ctx_3 = AKSPreviewAgentPoolContext(
+            self.cmd,
+            AKSAgentPoolParamDict({"os_sku": "Ubuntu", "enable_fips_image": True}),
+            self.models,
+            DecoratorMode.CREATE,
+            self.agentpool_decorator_mode,
+        )
+        self.assertEqual(ctx_3.get_enable_fips_image(), True)
+
+        # --disable-fips-image cannot be used with Windows2025, since FIPS is required
+        ctx_4 = AKSPreviewAgentPoolContext(
+            self.cmd,
+            AKSAgentPoolParamDict(
+                {
+                    "os_sku": CONST_OS_SKU_WINDOWS2025,
+                    "disable_fips_image": True,
+                }
+            ),
+            self.models,
+            DecoratorMode.CREATE,
+            self.agentpool_decorator_mode,
+        )
+        with self.assertRaises(ArgumentUsageError):
+            ctx_4.get_enable_fips_image()
+
+        # the Windows2025 requirement only applies in create mode
+        ctx_5 = AKSPreviewAgentPoolContext(
+            self.cmd,
+            AKSAgentPoolParamDict({"os_sku": CONST_OS_SKU_WINDOWS2025}),
+            self.models,
+            DecoratorMode.UPDATE,
+            self.agentpool_decorator_mode,
+        )
+        self.assertEqual(ctx_5.get_enable_fips_image(), False)
+
     def common_get_enable_secure_boot(self):
         # default
         ctx_1 = AKSPreviewAgentPoolContext(
@@ -1037,6 +1097,30 @@ class AKSPreviewAgentPoolContextCommonTestCase(unittest.TestCase):
         ctx_4.attach_agentpool(agentpool_4)
         self.assertEqual(ctx_4.get_vm_sizes(), ["Standard_D4s_v3"])
 
+    def common_get_vm_set_type(self):
+        ctx = AKSPreviewAgentPoolContext(
+            self.cmd,
+            AKSAgentPoolParamDict(
+                {
+                    "vm_set_type": "flexnodes",
+                }
+            ),
+            self.models,
+            DecoratorMode.UPDATE,
+            self.agentpool_decorator_mode,
+        )
+        self.assertEqual(ctx.get_vm_set_type(), CONST_FLEX_NODES)
+
+        with self.assertRaises(InvalidArgumentValueError):
+            ctx = AKSPreviewAgentPoolContext(
+                self.cmd,
+                AKSAgentPoolParamDict({"vm_set_type": "FutureVMSetType"}),
+                self.models,
+                DecoratorMode.CREATE,
+                self.agentpool_decorator_mode,
+            )
+            ctx.get_vm_set_type()
+
     def common_get_upgrade_strategy(self):
         # default
         ctx_1 = AKSPreviewAgentPoolContext(
@@ -1349,6 +1433,9 @@ class AKSPreviewAgentPoolContextStandaloneModeTestCase(
     def test_get_os_sku(self):
         self.common_get_os_sku()
 
+    def test_get_enable_fips_image_windows2025_required(self):
+        self.common_get_enable_fips_image_windows2025_required()
+
     def test_get_skip_gpu_driver_install(self):
         self.common_get_skip_gpu_driver_install()
 
@@ -1390,6 +1477,9 @@ class AKSPreviewAgentPoolContextStandaloneModeTestCase(
 
     def test_get_vm_sizes(self):
         self.common_get_vm_sizes()
+
+    def test_get_vm_set_type(self):
+        self.common_get_vm_set_type()
 
     def test_get_upgrade_strategy(self):
         self.common_get_upgrade_strategy()
@@ -1458,6 +1548,9 @@ class AKSPreviewAgentPoolContextManagedClusterModeTestCase(
     def test_get_os_sku(self):
         self.common_get_os_sku()
 
+    def test_get_enable_fips_image_windows2025_required(self):
+        self.common_get_enable_fips_image_windows2025_required()
+
     def test_get_enable_artifact_streaming(self):
         self.common_get_enable_artifact_streaming()
 
@@ -1487,6 +1580,9 @@ class AKSPreviewAgentPoolContextManagedClusterModeTestCase(
 
     def test_get_vm_sizes(self):
         self.common_get_vm_sizes()
+
+    def test_get_vm_set_type(self):
+        self.common_get_vm_set_type()
 
     def test_get_upgrade_strategy(self):
         self.common_get_upgrade_strategy()
@@ -2054,12 +2150,12 @@ class AKSPreviewAgentPoolAddDecoratorCommonTestCase(unittest.TestCase):
         # Verify that name is preserved
         self.assertEqual(dec_agentpool_1.name, original_name)
 
-        # Verify that all other properties are reset to None
-        for attr_name in vars(dec_agentpool_1):
-            if attr_name not in ['name', 'mode'] and not attr_name.startswith('_'):
-                attr_value = getattr(dec_agentpool_1, attr_name)
-                self.assertIsNone(attr_value,
-                    f"Attribute '{attr_name}' should be None but was '{attr_value}'")
+        self.assertIsNone(dec_agentpool_1.count)
+        self.assertIsNone(dec_agentpool_1.vm_size)
+        self.assertIsNone(dec_agentpool_1.os_type)
+        self.assertIsNone(dec_agentpool_1.enable_auto_scaling)
+        self.assertIsNone(dec_agentpool_1.min_count)
+        self.assertIsNone(dec_agentpool_1.max_count)
 
         # Test case 2: mode is not ManagedSystem - should return agentpool unchanged
         dec_2 = AKSPreviewAgentPoolAddDecorator(
@@ -2138,11 +2234,12 @@ class AKSPreviewAgentPoolAddDecoratorCommonTestCase(unittest.TestCase):
         dec_agentpool_1 = dec_1.set_up_machines_mode(agentpool_1)
         self.assertEqual(dec_agentpool_1.name, original_name)
         self.assertEqual(dec_agentpool_1.mode, CONST_NODEPOOL_MODE_MACHINES)
-        for attr_name in vars(dec_agentpool_1):
-            if attr_name not in ['name', 'mode'] and not attr_name.startswith('_'):
-                attr_value = getattr(dec_agentpool_1, attr_name)
-                self.assertIsNone(attr_value,
-                    f"Attribute '{attr_name}' should be None but was '{attr_value}'")
+        self.assertIsNone(dec_agentpool_1.count)
+        self.assertIsNone(dec_agentpool_1.vm_size)
+        self.assertIsNone(dec_agentpool_1.os_type)
+        self.assertIsNone(dec_agentpool_1.enable_auto_scaling)
+        self.assertIsNone(dec_agentpool_1.min_count)
+        self.assertIsNone(dec_agentpool_1.max_count)
 
     def common_construct_agentpool_profile_preview_with_managed_system_mode(self):
         """Test that construct_agentpool_profile_preview properly handles ManagedSystem mode"""
@@ -2497,6 +2594,87 @@ class AKSPreviewAgentPoolAddDecoratorStandaloneModeTestCase(
         self.assertEqual(dec_agentpool_1, ground_truth_agentpool_1)
 
         dec_1.context.raw_param.print_usage_statistics()
+
+    def test_construct_agentpool_profile_preview_with_flexnodes(self):
+        import inspect
+
+        from azext_aks_preview.custom import aks_agentpool_add
+
+        raw_param_dict = {
+            name: parameter.default
+            for name, parameter in inspect.signature(aks_agentpool_add).parameters.items()
+            if parameter.default is not parameter.empty
+        }
+        raw_param_dict.update({
+            "resource_group_name": "test_rg_name",
+            "cluster_name": "test_cluster_name",
+            "nodepool_name": "flexpool",
+            "vm_set_type": CONST_FLEX_NODES,
+            "kubernetes_version": "1.32",
+            "mode": CONST_NODEPOOL_MODE_USER,
+            "max_pods": 110,
+            "labels": {"app": "flex"},
+            "node_taints": "dedicated=flex:NoSchedule",
+            "max_unavailable": "30%",
+        })
+        dec = AKSPreviewAgentPoolAddDecorator(
+            self.cmd,
+            self.client,
+            raw_param_dict,
+            self.resource_type,
+            self.agentpool_decorator_mode,
+        )
+
+        with patch(
+            "azext_aks_preview.agentpool_decorator.cf_agent_pools",
+            return_value=Mock(list=Mock(return_value=[])),
+        ):
+            agentpool = dec.construct_agentpool_profile_preview()
+
+        self.assertEqual(
+            agentpool.as_dict(),
+            {
+                "name": "flexpool",
+                "properties": {
+                    "orchestratorVersion": "1.32",
+                    "maxPods": 110,
+                    "nodeLabels": {"app": "flex"},
+                    "nodeTaints": ["dedicated=flex:NoSchedule"],
+                    "upgradeSettings": {"maxUnavailable": "30%"},
+                    "type": CONST_FLEX_NODES,
+                    "mode": CONST_NODEPOOL_MODE_USER,
+                },
+            },
+        )
+
+    def test_construct_flexnodes_rejects_explicit_unsupported_options(self):
+        raw_param_dict = {
+            "resource_group_name": "test_rg_name",
+            "cluster_name": "test_cluster_name",
+            "nodepool_name": "flexpool",
+            "vm_set_type": CONST_FLEX_NODES,
+            "enable_encryption_at_host": True,
+            "max_surge": "50%",
+        }
+        dec = AKSPreviewAgentPoolAddDecorator(
+            self.cmd,
+            self.client,
+            raw_param_dict,
+            self.resource_type,
+            self.agentpool_decorator_mode,
+        )
+
+        with patch(
+            "azext_aks_preview._helpers.get_user_supplied_argument_options",
+            return_value={
+                "enable_encryption_at_host": "--enable-encryption-at-host",
+                "max_surge": "--max-surge",
+            },
+        ), self.assertRaisesRegex(
+            InvalidArgumentValueError,
+            "--enable-encryption-at-host, --max-surge",
+        ):
+            dec.construct_agentpool_profile_preview()
 
     def test_set_up_blue_green_upgrade_settings(self):
         self.common_set_up_blue_green_upgrade_settings()
@@ -3068,6 +3246,74 @@ class AKSPreviewAgentPoolUpdateDecoratorCommonTestCase(unittest.TestCase):
         # vm_size should remain unchanged for VMs pools
         self.assertEqual(dec_agentpool_3.vm_size, "Standard_D2s_v3")
 
+    def common_update_zones(self):
+        # No zones provided: preserve both the value and list instance from the fetched pool.
+        dec_1 = AKSPreviewAgentPoolUpdateDecorator(
+            self.cmd,
+            self.client,
+            {"zones": None},
+            self.resource_type,
+            self.agentpool_decorator_mode,
+        )
+        with self.assertRaises(CLIInternalError):
+            dec_1.update_zones(None)
+
+        existing_zones = ["1", "2"]
+        agentpool_1 = self.create_initialized_agentpool_instance(
+            availability_zones=existing_zones
+        )
+        stored_zones = agentpool_1.availability_zones
+        dec_1.context.attach_agentpool(agentpool_1)
+        dec_agentpool_1 = dec_1.update_zones(agentpool_1)
+        self.assertIs(dec_agentpool_1.availability_zones, stored_zones)
+
+        # The automatic-zone token is passed through as a one-element list.
+        dec_2 = AKSPreviewAgentPoolUpdateDecorator(
+            self.cmd,
+            self.client,
+            {"zones": ["auto"]},
+            self.resource_type,
+            self.agentpool_decorator_mode,
+        )
+        agentpool_2 = self.create_initialized_agentpool_instance(
+            availability_zones=None
+        )
+        dec_2.context.attach_agentpool(agentpool_2)
+        dec_agentpool_2 = dec_2.update_zones(agentpool_2)
+        self.assertEqual(dec_agentpool_2.availability_zones, ["auto"])
+
+        payload = dec_agentpool_2.as_dict()
+        if self.agentpool_decorator_mode == AgentPoolDecoratorMode.STANDALONE:
+            payload = payload["properties"]
+        self.assertEqual(payload["availabilityZones"], ["auto"])
+
+        # Explicit zone lists compose with a VM-size update on the same payload.
+        dec_3 = AKSPreviewAgentPoolUpdateDecorator(
+            self.cmd,
+            self.client,
+            {
+                "zones": ["1", "2", "3"],
+                "node_vm_size": "Standard_D4s_v3",
+            },
+            self.resource_type,
+            self.agentpool_decorator_mode,
+        )
+        agentpool_3 = self.create_initialized_agentpool_instance(
+            availability_zones=None,
+            vm_size="Standard_D2s_v3",
+        )
+        dec_3.context.attach_agentpool(agentpool_3)
+        dec_agentpool_3 = dec_3.update_vm_size(agentpool_3)
+        dec_agentpool_3 = dec_3.update_zones(dec_agentpool_3)
+        self.assertEqual(dec_agentpool_3.availability_zones, ["1", "2", "3"])
+        self.assertEqual(dec_agentpool_3.vm_size, "Standard_D4s_v3")
+
+        payload = dec_agentpool_3.as_dict()
+        if self.agentpool_decorator_mode == AgentPoolDecoratorMode.STANDALONE:
+            payload = payload["properties"]
+        self.assertEqual(payload["availabilityZones"], ["1", "2", "3"])
+        self.assertEqual(payload["vmSize"], "Standard_D4s_v3")
+
     def common_update_upgrade_strategy(self):
         # Test case 1: No upgrade strategy provided (should not change agentpool)
         dec_1 = AKSPreviewAgentPoolUpdateDecorator(
@@ -3411,6 +3657,9 @@ class AKSPreviewAgentPoolUpdateDecoratorStandaloneModeTestCase(
     def test_update_vm_size(self):
         self.common_update_vm_size()
 
+    def test_update_zones(self):
+        self.common_update_zones()
+
     def test_update_upgrade_strategy(self):
         self.common_update_upgrade_strategy()
 
@@ -3446,6 +3695,8 @@ class AKSPreviewAgentPoolUpdateDecoratorStandaloneModeTestCase(
             "nodepool_name",
         ]
         self.assertEqual(positional_params, ground_truth_positional_params)
+        self.assertIn("zones", optional_params)
+        self.assertIsNone(optional_params["zones"])
 
         # prepare a dictionary of default parameters
         raw_param_dict = {
@@ -3509,6 +3760,9 @@ class AKSPreviewAgentPoolUpdateDecoratorManagedClusterModeTestCase(
 
     def test_update_vm_size(self):
         self.common_update_vm_size()
+
+    def test_update_zones(self):
+        self.common_update_zones()
 
     def test_update_upgrade_strategy(self):
         self.common_update_upgrade_strategy()
