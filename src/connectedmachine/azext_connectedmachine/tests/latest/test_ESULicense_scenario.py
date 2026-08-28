@@ -53,11 +53,7 @@ class ESULicenseScenarioTest(ScenarioTest):
                 '--resource-group "{rg}" '
                 '--location "{location}" '
                 '--license-type "ESU" '
-                '--edition "Datacenter" '
-                '--processors 16 '
-                '--state "Activated" '
-                '--target "Windows Server 2012" '
-                '--type "pCore"',
+                '--license-details edition="Datacenter" processors=16 state="Activated" target="Windows Server 2012" type="pCore"',
                 checks=[
                     self.check('name', '{licenseName}'),
         ])
@@ -73,11 +69,7 @@ class ESULicenseScenarioTest(ScenarioTest):
                 '--name "{licenseName}" '
                 '--resource-group "{rg}" '
                 '--license-type "ESU" '
-                '--edition "Datacenter" '
-                '--processors 16 '
-                '--state "Deactivated" '
-                '--target "Windows Server 2012" '
-                '--type "pCore"',
+                '--license-details edition="Datacenter" processors=16 state="Deactivated" target="Windows Server 2012" type="pCore"',
                 checks=[
                     self.check('name', '{licenseName}'),
         ])
