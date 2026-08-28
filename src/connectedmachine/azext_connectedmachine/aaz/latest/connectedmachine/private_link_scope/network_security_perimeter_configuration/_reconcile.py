@@ -22,9 +22,9 @@ class Reconcile(AAZCommand):
     """
 
     _aaz_info = {
-        "version": "2026-06-16-preview",
+        "version": "2026-07-15",
         "resources": [
-            ["mgmt-plane", "/subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/privatelinkscopes/{}/networksecurityperimeterconfigurations/{}/reconcile", "2026-06-16-preview"],
+            ["mgmt-plane", "/subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/privatelinkscopes/{}/networksecurityperimeterconfigurations/{}/reconcile", "2026-07-15"],
         ]
     }
 
@@ -82,10 +82,11 @@ class Reconcile(AAZCommand):
         pass
 
     def _output(self, *args, **kwargs):
-        if not hasattr(self.ctx.vars, "instance"):
-            return None
-        result = self.deserialize_output(self.ctx.vars.instance, client_flatten=True)
-        return result
+        # Reconcile operation returns minimal response, check if instance exists
+        if hasattr(self.ctx.vars, 'instance') and self.ctx.vars.instance is not None:
+            result = self.deserialize_output(self.ctx.vars.instance, client_flatten=True)
+            return result
+        return None
 
     class NetworkSecurityPerimeterConfigurationsReconcileForPrivateLinkScope(AAZHttpOperation):
         CLIENT_TYPE = "MgmtClient"
@@ -155,7 +156,7 @@ class Reconcile(AAZCommand):
         def query_parameters(self):
             parameters = {
                 **self.serialize_query_param(
-                    "api-version", "2026-06-16-preview",
+                    "api-version", "2026-07-15",
                     required=True,
                 ),
             }

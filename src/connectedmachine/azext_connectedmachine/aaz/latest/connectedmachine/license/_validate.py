@@ -22,9 +22,9 @@ class Validate(AAZCommand):
     """
 
     _aaz_info = {
-        "version": "2026-06-16-preview",
+        "version": "2026-07-15",
         "resources": [
-            ["mgmt-plane", "/subscriptions/{}/providers/microsoft.hybridcompute/validatelicense", "2026-06-16-preview"],
+            ["mgmt-plane", "/subscriptions/{}/providers/microsoft.hybridcompute/validatelicense", "2026-07-15"],
         ]
     }
 
@@ -44,17 +44,17 @@ class Validate(AAZCommand):
 
         # define Arg Group ""
 
-        # define Arg Group "Body"
+        # define Arg Group "Parameters"
 
         _args_schema = cls._args_schema
         _args_schema.location = AAZResourceLocationArg(
-            arg_group="Body",
+            arg_group="Parameters",
             help="The geo-location where the resource lives",
             required=True,
         )
         _args_schema.tags = AAZDictArg(
             options=["--tags"],
-            arg_group="Body",
+            arg_group="Parameters",
             help="Resource tags.",
         )
 
@@ -128,7 +128,7 @@ class Validate(AAZCommand):
 
     def _execute_operations(self):
         self.pre_operations()
-        yield self.LicensesOperationGroupValidateLicense(ctx=self.ctx)()
+        yield self.LicensesValidateLicense(ctx=self.ctx)()
         self.post_operations()
 
     @register_callback
@@ -143,7 +143,7 @@ class Validate(AAZCommand):
         result = self.deserialize_output(self.ctx.vars.instance, client_flatten=True)
         return result
 
-    class LicensesOperationGroupValidateLicense(AAZHttpOperation):
+    class LicensesValidateLicense(AAZHttpOperation):
         CLIENT_TYPE = "MgmtClient"
 
         def __call__(self, *args, **kwargs):
@@ -199,7 +199,7 @@ class Validate(AAZCommand):
         def query_parameters(self):
             parameters = {
                 **self.serialize_query_param(
-                    "api-version", "2026-06-16-preview",
+                    "api-version", "2026-07-15",
                     required=True,
                 ),
             }
